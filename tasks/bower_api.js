@@ -110,7 +110,9 @@ module.exports = function(grunt) {
             if (fs.existsSync(destination)) {
               fs.unlinkSync(destination);
             }
-            fs.createReadStream(source).pipe(fs.createWriteStream(destination));
+            console.log(source, destination);
+            fs.writeFileSync(destination, fs.readFileSync(source));
+            //fs.createReadStream(source).pipe(fs.createWriteStream(destination));
             grunt.log.writeln(['copied', filename.cyan, options.assetsDirectory].join(' '));
           }
           callback();
